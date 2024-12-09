@@ -9,9 +9,16 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Appearance")) {
+                    Toggle(isOn: $isDarkMode) {
+                        Text("Dark Mode")
+                    }
+                }
                 Section(header: Text("About")) {
                     Text("GolfBuddy Lite v1.0")
                     Text("Created for golf enthusiasts.")

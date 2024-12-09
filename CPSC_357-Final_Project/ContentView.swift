@@ -5,9 +5,13 @@
 //  Created by Tommy Kudey on 12/3/24.
 //
 
+
+
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var practiceData = PracticeData()
+
     var body: some View {
         TabView {
             HomeView()
@@ -31,7 +35,6 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .environmentObject(practiceData) // Inject practiceData into the environment
     }
 }
-
-#Preview{}

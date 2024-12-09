@@ -10,22 +10,20 @@ import SwiftUI
 import Charts
 
 struct ProgressView: View {
-    let data = [
-        (date: "Mon", performance: 70),
-        (date: "Tue", performance: 75),
-        (date: "Wed", performance: 80)
-    ]
-    
+    @EnvironmentObject var practiceData: PracticeData
+
     var body: some View {
         NavigationView {
             VStack {
                 Text("Your Progress")
                     .font(.title)
-                Chart(data, id: \.date) { point in
-                    LineMark(
-                        x: .value("Day", point.date),
-                        y: .value("Performance", point.performance)
-                    )
+                Chart {
+                    ForEach(practiceData.entries) { entry in
+                        LineMark(
+                            x: .value("Date", entry.date),
+                            y: .value("Performance", entry.performance)
+                        )
+                    }
                 }
                 .frame(height: 200)
             }
